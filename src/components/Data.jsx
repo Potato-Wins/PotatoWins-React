@@ -6,10 +6,11 @@ import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, R
 const DataContainer = styled.div`
   flex: 1;
   min-width: 250px;
-  background-color: #2a2d3e;
-  border-radius: 8px;
+  background-color:rgba(134,139,147,0.2);
+  border-radius: 10px;
   padding: 20px;
   position: relative;
+  border : 0.3px solid #505050;
 `;
 
 const DataTitle = styled.div`

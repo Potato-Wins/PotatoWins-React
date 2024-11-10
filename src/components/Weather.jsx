@@ -122,6 +122,7 @@ class Weather extends Component {
     } else {
       return (
         <Wrapper>
+          <div>Weather</div>
           <h3>{this.state.location}</h3>
           <TopSection>
             <TextWrapper>
