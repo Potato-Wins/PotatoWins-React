@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Data from '../components/Data.jsx';
-import Weather from '../components/Weather.jsx';
-import Alarm from '../components/Alarm.jsx';
 import Logo from '../assets/Logo.svg?react';
+import NotificationCom from '../components/NotificationCom.jsx';
+import Data from '../components/Notification/Data.jsx';
 
 const DashboardContainer = styled.div`
   display: flex;
@@ -92,13 +91,6 @@ const NotificationContainer = styled.div`
   padding-top:90px;
 `;
 
-const Notification = styled.div`
-  background-color: rgba(134,139,147,0.2);
-  border-radius: 10px;
-  border : 0.3px solid #505050;
-  padding: 15px;
-  margin-bottom: 20px;
-`;
 
 const dummyData = [
   { name: 'Jan', uv: 40, pv: 24 },
@@ -136,15 +128,7 @@ function Dashboard() {
           <Data title="DDM" data={dummyData} type="line" />
         </DataContainer>
       </MainContent>
-
-      <NotificationContainer>
-        <Notification>
-          <Weather />
-        </Notification>
-        <Notification>
-          <Alarm />
-        </Notification>
-      </NotificationContainer>
+      <NotificationCom/>
     </DashboardContainer>
   );
 }

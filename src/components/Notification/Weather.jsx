@@ -12,6 +12,12 @@ const Wrapper = styled.div`
   color: #ffffff;
 `;
 
+const HeaderText = styled.div`
+  align-self: flex-start;
+  font-size: 1rem;
+  font-weight: bold;
+`;
+
 const TopSection = styled.div`
   display: flex;
   align-items: center;
@@ -122,7 +128,7 @@ class Weather extends Component {
     } else {
       return (
         <Wrapper>
-          <div>Weather</div>
+          <HeaderText>Weather</HeaderText>
           <h3>{this.state.location}</h3>
           <TopSection>
             <TextWrapper>

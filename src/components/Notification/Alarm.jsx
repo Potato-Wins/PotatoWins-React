@@ -6,8 +6,13 @@ const AlarmContainer = styled.div`
   border-radius: 8px;
   padding: 5px;
   color: #e0e0e0;
+  
 `;
-
+const Alarmtitle =styled.div`
+align-self: flex-start;
+font-size: 1rem;
+font-weight: bold;
+`;
 const List = styled.ul`
  padding:10px;
  `;
@@ -35,7 +40,7 @@ const notifications = [
 function Alarm() {
   return (
     <AlarmContainer>
-      <div>Notification</div>
+      <Alarmtitle>Notification</Alarmtitle>
       <List>
         {notifications.map((notification, index) => (
           <NotificationItem key={index}>
