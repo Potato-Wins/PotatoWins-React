@@ -4,6 +4,7 @@ import Logo from "../assets/Logo.svg?react";
 import NotificationCom from "../components/NotificationCom.jsx";
 import Data from "../components/Notification/Data.jsx";
 import SliderComponent from "../components/detail/SliderComponent.jsx";
+import GaugeComponent from "../components/detail/GaugeComponent.jsx";
 
 const DashboardContainer = styled.div`
   display: flex;
@@ -107,7 +108,10 @@ const DetailPage = () => {
         <DataContainer>
           <Data title="염도" data={dummyData} type="line" />
         </DataContainer>
-        <SliderComponent></SliderComponent>
+        <DataContainer>
+          <SliderComponent></SliderComponent>
+          <GaugeComponent></GaugeComponent>
+        </DataContainer>
       </MainContent>
       <NotificationCom />
     </DashboardContainer>
