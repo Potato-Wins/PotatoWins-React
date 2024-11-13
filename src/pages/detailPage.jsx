@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Logo from "../assets/Logo.svg?react";
 import NotificationCom from "../components/NotificationCom.jsx";
 import Data from "../components/Notification/Data.jsx";
+import SliderComponent from "../components/detail/SliderComponent.jsx";
 
 const DashboardContainer = styled.div`
   display: flex;
@@ -48,12 +49,9 @@ const MainContent = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  margin-left: ${(props) =>
-    props.isSidebarOpen
-      ? "80px"
-      : "0"}; /* 사이드바가 열리면 메인 콘텐츠 오른쪽으로 밀림 */
+  margin-left: ${(props) => (props.isSidebarOpen ? "80px" : "0")};
   padding: 20px;
-  margin-top: 70px; /* 헤드바 아래로 콘텐츠가 보이게 하는 여백 */
+  margin-top: 70px;
 `;
 
 const Header = styled.div`
@@ -65,7 +63,7 @@ const Header = styled.div`
   color: white;
   display: flex;
   align-items: center;
-  justify-content: center; /* 중앙 정렬 */
+  justify-content: center;
   position: fixed;
   width: 100%;
   top: 0;
@@ -80,18 +78,6 @@ const DataContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-const NotificationContainer = styled.div`
-  width: 300px;
-  margin-left: 0px;
-  color: #e0e0e0;
-  z-index: 5;
-  border-left: 0.3px solid #505050;
-  padding-left: 20px;
-  padding-right: 20px;
-  align-items: center;
-  padding-top: 90px;
-`;
-
 const dummyData = [
   { name: "Jan", uv: 40, pv: 24 },
   { name: "Feb", uv: 30, pv: 13 },
@@ -99,13 +85,12 @@ const dummyData = [
   { name: "Apr", uv: 27, pv: 39 },
 ];
 
-function Dashboard() {
+const DetailPage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
-
   return (
     <DashboardContainer>
       <Sidebar isOpen={isSidebarOpen}>
@@ -120,15 +105,13 @@ function Dashboard() {
         <Header>L M S</Header>
 
         <DataContainer>
-          <Data title="온도" data={dummyData} type="line" />
-          <Data title="압력" data={dummyData} type="bar" />
-          <Data title="탁도" data={dummyData} type="bar" />
-          <Data title="DDM" data={dummyData} type="line" />
+          <Data title="염도" data={dummyData} type="line" />
         </DataContainer>
+        <SliderComponent></SliderComponent>
       </MainContent>
       <NotificationCom />
     </DashboardContainer>
   );
-}
+};
 
-export default Dashboard;
+export default DetailPage;
