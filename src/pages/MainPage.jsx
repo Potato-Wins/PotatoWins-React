@@ -4,6 +4,7 @@ import Logo from "../assets/Logo.svg?react";
 import NotificationCom from "../components/NotificationCom.jsx";
 import Data from "../components/Notification/Data.jsx";
 
+
 const DashboardContainer = styled.div`
   display: flex;
   background-color: #261e35;
