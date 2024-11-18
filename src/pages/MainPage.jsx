@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Logo from '../assets/Logo.svg?react';
-import NotificationCom from '../components/NotificationCom.jsx';
-import Data from '../components/Notification/Data.jsx';
+import NotificationCom from '../components/RightSideBar.jsx';
+import Data from '../components/Data.jsx';
 
 const DashboardContainer = styled.div`
   display: flex;

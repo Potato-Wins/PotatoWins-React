@@ -55,9 +55,9 @@ const WeatherDescription = styled.p`
 `;
 
 const Icon = styled.img`
-  width: 60px;
-  height: 60px;
-  margin-left: 10px;
+  width: 150px;
+  height: 150px;
+  margin-left: 30px;
 `;
 
 const LoadingText = styled.p`
@@ -93,7 +93,7 @@ class Weather extends Component {
     const lon = position.coords.longitude;
 
     const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&lang=kr`;
 
     axios
       .get(url)
