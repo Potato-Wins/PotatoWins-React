@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import Search from './Notification/Search.jsx';
-import Weather from './Notification/Weather.jsx';
-import Alarm from './Notification/Alarm.jsx';
+import Search from './RightSidebar/Search.jsx';
+import Weather from './RightSidebar/Weather.jsx';
+import Alarm from './RightSidebar/Alarm.jsx';
 
 const NotificationContainerWrapper = styled.div`
   width: 300px;
