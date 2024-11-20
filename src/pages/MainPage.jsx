@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Logo from "../assets/Logo.svg?react";
-import NotificationCom from "../components/NotificationCom.jsx";
-import Data from "../components/Notification/Data.jsx";
+import RightSideBar from "../components/RightSideBar.jsx";
+import Data from "../components/Data.jsx";
+import Header from "../components/Header.jsx";
 
 
 const DashboardContainer = styled.div`
   display: flex;
   background-color: #261e35;
   color: white;
-  height: 100vh;
   position: relative;
 `;
 
@@ -57,23 +57,6 @@ const MainContent = styled.div`
   margin-top: 70px; /* 헤드바 아래로 콘텐츠가 보이게 하는 여백 */
 `;
 
-const Header = styled.div`
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 0px;
-  background-color: #261e35;
-  padding: 15px;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center; /* 중앙 정렬 */
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  border-bottom: 0.3px solid #505050;
-`;
 
 const DataContainer = styled.div`
   display: flex;
@@ -81,17 +64,6 @@ const DataContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-const NotificationContainer = styled.div`
-  width: 300px;
-  margin-left: 0px;
-  color: #e0e0e0;
-  z-index: 5;
-  border-left: 0.3px solid #505050;
-  padding-left: 20px;
-  padding-right: 20px;
-  align-items: center;
-  padding-top: 90px;
-`;
 
 const dummyData = [
   { name: "Jan", uv: 40, pv: 24 },
@@ -118,7 +90,7 @@ function Dashboard() {
       </ToggleButton>
 
       <MainContent isSidebarOpen={isSidebarOpen}>
-        <Header>L M S</Header>
+        <Header></Header>
 
         <DataContainer>
           <Data title="온도" data={dummyData} type="line" />
@@ -127,7 +99,7 @@ function Dashboard() {
           <Data title="DDM" data={dummyData} type="line" />
         </DataContainer>
       </MainContent>
-      <NotificationCom />
+      <RightSideBar />
     </DashboardContainer>
   );
 }

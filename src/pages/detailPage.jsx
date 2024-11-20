@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Logo from "../assets/Logo.svg?react";
-import NotificationCom from "../components/NotificationCom.jsx";
-import Data from "../components/Notification/Data.jsx";
+import RightSideBar from "../components/RightSideBar.jsx";
+import Data from "../components/Data.jsx";
 import SliderComponent from "../components/detail/SliderComponent.jsx";
 import GaugeComponent from "../components/detail/GaugeComponent.jsx";
 
@@ -113,7 +113,7 @@ const DetailPage = () => {
           <GaugeComponent></GaugeComponent>
         </DataContainer>
       </MainContent>
-      <NotificationCom />
+      <RightSideBar />
     </DashboardContainer>
   );
 };
