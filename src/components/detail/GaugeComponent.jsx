@@ -4,8 +4,8 @@ import styled from "styled-components";
 const Container = styled.div`
   background-color: #3c354a;
   padding: 20px;
-  border-radius: 20px;
-  width: 300px;
+  border-radius: 10px;
+  width: 310px;
   text-align: center;
   color: #fff;
   margin: 30px 0;
