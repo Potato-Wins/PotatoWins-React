@@ -104,12 +104,12 @@ const SliderValue = styled.div`
 `;
 
 const GaugeComponent = () => {
-  const [value, setValue] = useState(0.75); // 0 to 1 scale
+  const [value, setValue] = useState(0.75);
   const radius = 90;
   const circumference = 1 * Math.PI * radius;
 
   const handleSliderChange = (e) => {
-    setValue(e.target.value / 100); // Slider value from 0 to 100
+    setValue(e.target.value / 100);
   };
 
   return (
