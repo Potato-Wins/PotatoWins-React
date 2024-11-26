@@ -4,8 +4,8 @@ import styled from "styled-components";
 const Container = styled.div`
   background-color: #3c354a;
   padding: 20px;
-  border-radius: 20px;
-  width: 300px;
+  border-radius: 10px;
+  width: 310px;
   text-align: center;
   color: #fff;
   margin: 30px 0;
@@ -104,12 +104,12 @@ const SliderValue = styled.div`
 `;
 
 const GaugeComponent = () => {
-  const [value, setValue] = useState(0.75); // 0 to 1 scale
+  const [value, setValue] = useState(0.75);
   const radius = 90;
   const circumference = 1 * Math.PI * radius;
 
   const handleSliderChange = (e) => {
-    setValue(e.target.value / 100); // Slider value from 0 to 100
+    setValue(e.target.value / 100);
   };
 
   return (

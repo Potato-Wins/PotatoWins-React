@@ -3,8 +3,8 @@ import styled from "styled-components";
 import RightSideBar from "../components/RightSideBar.jsx";
 import Data from "../components/Data.jsx";
 import Leftbar from "../components/Leftbar.jsx";
-import GaugeComponent from "../components/detail/GaugeComponent.jsx";
-import SliderComponent from "../components/detail/SliderComponent.jsx";
+import FishVideo from "../components/fishDetail/FishVideo.jsx";
+import FishTable from "../components/fishDetail/FishTable.jsx";
 
 const DashboardContainer = styled.div`
   display: flex;
@@ -72,7 +72,7 @@ const dummyData = [
   { name: "Apr", uv: 27, pv: 39 },
 ];
 
-const DetailPage = () => {
+const FishDetailPage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const toggleSidebar = () => {
@@ -89,18 +89,13 @@ const DetailPage = () => {
 
       <MainContent isSidebarOpen={isSidebarOpen}>
         <Header>L M S</Header>
-
         <DataContainer>
-          <Data title="염도" data={dummyData} type="line" />
-        </DataContainer>
-        <DataContainer>
-          <SliderComponent></SliderComponent>
-          <GaugeComponent></GaugeComponent>
+          <FishVideo imageSrc={"../assets/fish-video.png"}></FishVideo>
+          <FishTable></FishTable>
         </DataContainer>
       </MainContent>
-      <RightSideBar />
     </DashboardContainer>
   );
 };
 
-export default DetailPage;
+export default FishDetailPage;

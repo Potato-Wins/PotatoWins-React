@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Logo from "../assets/Logo.svg?react";
+import Leftbar from "../components/Leftbar.jsx";
 import RightSideBar from "../components/RightSideBar.jsx";
 import Data from "../components/Data.jsx";
 import Header from "../components/Header.jsx";
-
 
 const DashboardContainer = styled.div`
   display: flex;
@@ -13,27 +12,10 @@ const DashboardContainer = styled.div`
   position: relative;
 `;
 
-const Sidebar = styled.div`
-  width: ${(props) => (props.isOpen ? "80px" : "0")};
-  background-color: #261e35;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: ${(props) => (props.isOpen ? "20px 0" : "0")};
-  overflow: hidden;
-  transition: width 0.3s ease;
-  position: fixed; /* 사이드바 고정 */
-  left: 0;
-  top: 0;
-  height: 100%;
-  z-index: 20;
-  border-right: 1px solid #505050;
-`;
-
 const ToggleButton = styled.button`
   position: absolute;
   top: 350px;
-  left: ${(props) => (props.isOpen ? "70px" : "0.2px")};
+  left: ${(props) => (props.isOpen ? "90px" : "10px")};
   background-color: #29263a;
   border: none;
   color: white;
@@ -49,21 +31,16 @@ const MainContent = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  margin-left: ${(props) =>
-    props.isSidebarOpen
-      ? "80px"
-      : "0"}; /* 사이드바가 열리면 메인 콘텐츠 오른쪽으로 밀림 */
+  margin-left: ${(props) => (props.isSidebarOpen ? "90px" : "10px")};
   padding: 20px;
-  margin-top: 70px; /* 헤드바 아래로 콘텐츠가 보이게 하는 여백 */
+  margin-top: 70px;
 `;
-
 
 const DataContainer = styled.div`
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
 `;
-
 
 const dummyData = [
   { name: "Jan", uv: 40, pv: 24 },
@@ -81,16 +58,14 @@ function Dashboard() {
 
   return (
     <DashboardContainer>
-      <Sidebar isOpen={isSidebarOpen}>
-        <Logo />
-        {/* 각 섹션에 대한 아이콘 추가 */}
-      </Sidebar>
-      <ToggleButton onClick={toggleSidebar} isOpen={isSidebarOpen}>
-        {isSidebarOpen ? "<" : ">"}
-      </ToggleButton>
+      <Leftbar isOpen={isSidebarOpen} />
+      <ToggleButton
+        onClick={toggleSidebar}
+        isOpen={isSidebarOpen}
+      ></ToggleButton>
 
       <MainContent isSidebarOpen={isSidebarOpen}>
-        <Header></Header>
+        <Header />
 
         <DataContainer>
           <Data title="온도" data={dummyData} type="line" />
@@ -99,6 +74,7 @@ function Dashboard() {
           <Data title="DDM" data={dummyData} type="line" />
         </DataContainer>
       </MainContent>
+
       <RightSideBar />
     </DashboardContainer>
   );

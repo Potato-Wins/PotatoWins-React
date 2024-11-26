@@ -1,16 +1,25 @@
-// components/Data.jsx
-import React from 'react';
-import styled from 'styled-components';
-import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import React from "react";
+import styled from "styled-components";
+import {
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 
 const DataContainer = styled.div`
   flex: 1;
   min-width: 250px;
-  background-color:rgba(134,139,147,0.2);
+  background-color: rgba(134, 139, 147, 0.2);
   border-radius: 10px;
   padding: 20px;
   position: relative;
-  border : 0.3px solid #505050;
+  border: 0.3px solid #505050;
 `;
 
 const DataTitle = styled.div`
@@ -22,7 +31,7 @@ const DataTitle = styled.div`
 function Data({ title, data, type }) {
   let datacontent;
 
-  if (type === 'line') {
+  if (type === "line") {
     datacontent = (
       <LineChart data={data}>
         <Line type="monotone" dataKey="uv" stroke="#8884d8" strokeWidth={2} />

@@ -5,7 +5,7 @@ const SliderContainer = styled.div`
   background-color: #3c354a;
   padding: 20px;
   border-radius: 10px;
-  width: 400px;
+  width: 548px;
   text-align: center;
   color: #fff;
   margin: 30px 0;
