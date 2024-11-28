@@ -5,7 +5,7 @@ const TableContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #3c354a;
+  background-color: rgba(134, 139, 147, 0.2);
   border-radius: 10px;
   border: 1px solid #737373;
   padding: 15px;
@@ -38,17 +38,16 @@ const Table = styled.table`
 `;
 
 const TableHead = styled.thead`
-  background-color: #3c354a;
-  color: #ffffff;
+background-color: rgba(134, 139, 147, 0.2);  color: #ffffff;
 `;
 
 const TableRow = styled.tr`
   &:nth-child(even) {
-    background-color: #0a1330;
+    background-color:black;
   }
 
   &:nth-child(odd) {
-    background-color: #3c354a;
+    background-color: rgba(134, 139, 147, 0.2);
   }
 `;
 

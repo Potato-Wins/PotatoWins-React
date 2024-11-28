@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 
 const SidebarContainer = styled.div`
   width: ${(props) => (props.isOpen ? "90px" : "0px")};
-  background-color: #261e35;
+  background-color: black;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,11 +34,11 @@ const NavItem = styled(Link)`
   transition: background-color 0.3s;
   position: relative;
   border-radius: 30px;
-  background-color: ${(props) => (props.active ? "#372c44" : "transparent")};
+  background-color: ${(props) => (props.active ? " rgba(134, 139, 147, 0.2);" : "transparent")};
   text-decoration: none;
 
   &:hover {
-    background-color: #372c44;
+    background-color:  rgba(134, 139, 147, 0.2);;
   }
 
   img {
