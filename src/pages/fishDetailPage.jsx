@@ -5,10 +5,10 @@ import Data from "../components/Data.jsx";
 import Leftbar from "../components/Leftbar.jsx";
 import FishVideo from "../components/fishDetail/FishVideo.jsx";
 import FishTable from "../components/fishDetail/FishTable.jsx";
-
+import Header from "../components/Header.jsx"
 const DashboardContainer = styled.div`
   display: flex;
-  background-color: #261e35;
+  background-color: black;
   color: white;
   height: 100vh;
   position: relative;
@@ -16,18 +16,21 @@ const DashboardContainer = styled.div`
 
 const ToggleButton = styled.button`
   position: absolute;
-  top: 350px;
-  left: ${(props) => (props.isOpen ? "100px" : "10px")};
-  background-color: #41475a;
-  border: none;
-  color: white;
-  font-size: 13px;
+  top: 380px;
+  left: ${(props) => (props.isOpen ? "75px" : "10px")};
+  background-color: black;
+  border: 0.3px solid #505050; /* 테두리 색과 두께 */
+  color: #505050;
+  font-size: 20px; /* 글자 크기 */
   cursor: pointer;
-  padding: 5px;
-  border-radius: 100px;
+  padding: 5px 10px; /* 버튼 안쪽 여백 */
+  border-radius: 50%; /* 원형 버튼 */
   transition: left 0.3s ease;
   z-index: 30;
+  width: 30px; /* 버튼 너비 */
+  height: 30px; /* 버튼 높이 */
 `;
+
 
 const MainContent = styled.div`
   display: flex;
@@ -38,23 +41,6 @@ const MainContent = styled.div`
   margin-top: 70px;
 `;
 
-const Header = styled.div`
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 0px;
-  background-color: #261e35;
-  padding: 15px;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  border-bottom: 0.3px solid #505050;
-`;
 
 const DataContainer = styled.div`
   display: flex;
@@ -88,7 +74,7 @@ const FishDetailPage = () => {
       </ToggleButton>
 
       <MainContent isSidebarOpen={isSidebarOpen}>
-        <Header>L M S</Header>
+        <Header></Header>
         <DataContainer>
           <FishVideo imageSrc={"../assets/fish-video.png"}></FishVideo>
           <FishTable></FishTable>

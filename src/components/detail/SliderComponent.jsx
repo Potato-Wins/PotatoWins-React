@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const SliderContainer = styled.div`
-  background-color: #3c354a;
+background-color: rgba(134, 139, 147, 0.2);
   padding: 20px;
   border-radius: 10px;
   width: 548px;
@@ -47,7 +47,7 @@ const SliderRound = styled.span`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: ${(props) => (props.checked ? "#6359E9" : "#ccc")};
+  background-color: ${(props) => (props.checked ? "rgba(134, 139, 147, 0.5);" : "#ccc")};
   border-radius: 20px;
   transition: 0.4s;
 
@@ -109,7 +109,7 @@ const Marks = styled.div`
 `;
 
 const PowerButton = styled.button`
-  background: ${(props) => (props.on ? "#6359E9" : "#261E35")};
+  background: ${(props) => (props.on ? " rgba(134, 139, 147, 0.2);" : "rgba(134, 139, 147, 0.7);")};
   border: none;
   border-radius: 50%;
   color: white;
