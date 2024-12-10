@@ -5,7 +5,7 @@ const HeaderContainer = styled.div`
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 0px;
-  background-color: #261e35;
+  background-color: black;
   padding: 15px;
   color: white;
   display: flex;

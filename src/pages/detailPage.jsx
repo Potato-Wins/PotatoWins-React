@@ -5,28 +5,30 @@ import Data from "../components/Data.jsx";
 import Leftbar from "../components/Leftbar.jsx";
 import GaugeComponent from "../components/detail/GaugeComponent.jsx";
 import SliderComponent from "../components/detail/SliderComponent.jsx";
+import Header from "../components/Header.jsx";
 
 const DashboardContainer = styled.div`
   display: flex;
-  background-color: #261e35;
+  background-color: black;
   color: white;
-  height: 100vh;
   position: relative;
 `;
 
 const ToggleButton = styled.button`
   position: absolute;
-  top: 350px;
-  left: ${(props) => (props.isOpen ? "100px" : "10px")};
-  background-color: #41475a;
-  border: none;
-  color: white;
-  font-size: 13px;
+  top: 380px;
+  left: ${(props) => (props.isOpen ? "75px" : "10px")};
+  background-color: black;
+  border: 0.3px solid #505050;
+  color: #505050;
+  font-size: 20px;
   cursor: pointer;
-  padding: 5px;
-  border-radius: 100px;
+  padding: 5px 10px;
+  border-radius: 50%;
   transition: left 0.3s ease;
   z-index: 30;
+  width: 30px;
+  height: 30px;
 `;
 
 const MainContent = styled.div`
@@ -38,24 +40,6 @@ const MainContent = styled.div`
   margin-top: 70px;
 `;
 
-const Header = styled.div`
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 0px;
-  background-color: #261e35;
-  padding: 15px;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  border-bottom: 0.3px solid #505050;
-`;
-
 const DataContainer = styled.div`
   display: flex;
   gap: 20px;
@@ -63,6 +47,13 @@ const DataContainer = styled.div`
   overflow-x: auto;
   width: 100%;
   max-width: 100%;
+`;
+
+const IframeContainer = styled.div`
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const dummyData = [
@@ -88,14 +79,21 @@ const DetailPage = () => {
       </ToggleButton>
 
       <MainContent isSidebarOpen={isSidebarOpen}>
-        <Header>L M S</Header>
-
+        <Header />
         <DataContainer>
-          <Data title="염도" data={dummyData} type="line" />
+        <IframeContainer>
+          <iframe
+            src="http://localhost:5601/app/dashboards#/view/ec1d0256-094e-4159-a1fd-f4d0dba060da?embed=true&_g=(refreshInterval%3A(pause%3A!t%2Cvalue%3A60000)%2Ctime%3A(from%3Anow-15m%2Cto%3Anow))&hide-filter-bar=true"
+            height="600"
+            width="1100"
+            title="Kibana Dashboard"
+            style={{ border: "none" }}
+          ></iframe>
+        </IframeContainer>
         </DataContainer>
         <DataContainer>
-          <SliderComponent></SliderComponent>
-          <GaugeComponent></GaugeComponent>
+          <SliderComponent />
+          <GaugeComponent />
         </DataContainer>
       </MainContent>
       <RightSideBar />
