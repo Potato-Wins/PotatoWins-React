@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import RightSideBar from "../components/RightSideBar.jsx";
-import Data from "../components/Data.jsx";
+import PHComponent from "../components/detail/pHComponent.jsx";
 import Leftbar from "../components/Leftbar.jsx";
 import GaugeComponent from "../components/detail/GaugeComponent.jsx";
 import SliderComponent from "../components/detail/SliderComponent.jsx";
@@ -81,19 +81,22 @@ const DetailPage = () => {
       <MainContent isSidebarOpen={isSidebarOpen}>
         <Header />
         <DataContainer>
-        <IframeContainer>
-          <iframe
-            src="http://localhost:5601/app/dashboards#/view/ec1d0256-094e-4159-a1fd-f4d0dba060da?embed=true&_g=(refreshInterval%3A(pause%3A!t%2Cvalue%3A60000)%2Ctime%3A(from%3Anow-15m%2Cto%3Anow))&hide-filter-bar=true"
-            height="600"
-            width="1100"
-            title="Kibana Dashboard"
-            style={{ border: "none" }}
-          ></iframe>
-        </IframeContainer>
+          <IframeContainer>
+            <iframe
+              src="http://localhost:5601/app/dashboards#/view/ec1d0256-094e-4159-a1fd-f4d0dba060da?embed=true&_g=(refreshInterval%3A(pause%3A!t%2Cvalue%3A60000)%2Ctime%3A(from%3Anow-15m%2Cto%3Anow))&hide-filter-bar=true"
+              height="400"
+              width="1000"
+              title="Kibana Dashboard"
+              style={{ border: "none" }}
+            ></iframe>
+          </IframeContainer>
         </DataContainer>
         <DataContainer>
           <SliderComponent />
-          <GaugeComponent />
+          <div>
+            <GaugeComponent />
+            <PHComponent />
+          </div>
         </DataContainer>
       </MainContent>
       <RightSideBar />

@@ -1,21 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { fetchSensorData } from "../../api/sensorData";
 
 const Container = styled.div`
-background-color: rgba(134, 139, 147, 0.2);
+  background-color: rgba(134, 139, 147, 0.2);
   padding: 20px;
   border-radius: 10px;
   width: 310px;
   text-align: center;
   color: #fff;
   margin: 30px 0;
-`;
-
-const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
 `;
 
 const GaugeWrapper = styled.div`
@@ -104,19 +98,39 @@ const SliderValue = styled.div`
 `;
 
 const GaugeComponent = () => {
-  const [value, setValue] = useState(0.75);
+  const [value, setValue] = useState(0);
+  const [loading, setLoading] = useState(true);
   const radius = 90;
-  const circumference = 1 * Math.PI * radius;
+  const circumference = Math.PI * radius;
 
   const handleSliderChange = (e) => {
     setValue(e.target.value / 100);
   };
 
+  useEffect(() => {
+    const fetchTempData = async () => {
+      try {
+        const sensorData = await fetchSensorData();
+        if (sensorData) {
+          const normalizedValue = sensorData.temp.value / 50;
+          setValue(normalizedValue > 1 ? 1 : normalizedValue);
+        }
+      } catch (error) {
+        console.error("Failed to fetch sensor data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchTempData();
+  }, []);
+
+  if (loading) {
+    return <Container>Loading...</Container>;
+  }
+
   return (
     <Container>
-      <Header>
-        <h3>Appropriate value</h3>
-      </Header>
+      <h3>Temperature Gauge</h3>
       <GaugeWrapper>
         <GaugeSVG>
           <BackgroundArc cx="100" cy="100" r={radius} />
@@ -128,11 +142,11 @@ const GaugeComponent = () => {
             circumference={circumference}
           />
         </GaugeSVG>
-        <ValueText>{Math.round(value * 100)}%</ValueText>
+        <ValueText>{(value * 50).toFixed(1)}°C</ValueText>
       </GaugeWrapper>
       <RangeSliderContainer>
         <SliderValue value={value * 100}>
-          {Math.round(value * 100)}%
+          {(value * 50).toFixed(1)}°C
         </SliderValue>
         <RangeSlider
           type="range"
@@ -142,9 +156,9 @@ const GaugeComponent = () => {
           onChange={handleSliderChange}
         />
         <PercentageLabels>
-          <span>0%</span>
-          <span>50%</span>
-          <span>100%</span>
+          <span>0°C</span>
+          <span>25°C</span>
+          <span>50°C</span>
         </PercentageLabels>
       </RangeSliderContainer>
     </Container>

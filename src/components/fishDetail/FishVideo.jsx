@@ -21,17 +21,20 @@ const Title = styled.h3`
   margin-bottom: 26px;
 `;
 
-const Image = styled.img`
+const Video = styled.video`
   max-width: 100%;
   border-radius: 8px;
   object-fit: cover;
 `;
 
-const FishVideo = ({ imageSrc }) => {
+const FishVideo = ({ videoSrc }) => {
   return (
     <Container>
       <Title>The condition of a fish</Title>
-      <Image src={imageSrc} alt="Fish Condition" />
+      <Video controls>
+        <source src={videoSrc} type="video/mp4" />
+        Your browser does not support the video tag.
+      </Video>
     </Container>
   );
 };
