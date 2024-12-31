@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { fetchSensorData } from "../../api/sensorData";
 
 const SliderContainer = styled.div`
-background-color: rgba(134, 139, 147, 0.2);
+  background-color: rgba(134, 139, 147, 0.2);
   padding: 20px;
   border-radius: 10px;
   width: 548px;
@@ -15,7 +16,7 @@ const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
 const ToggleContainer = styled.div`
@@ -47,7 +48,8 @@ const SliderRound = styled.span`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: ${(props) => (props.checked ? "rgba(134, 139, 147, 0.5);" : "#ccc")};
+  background-color: ${(props) =>
+    props.checked ? "rgba(134, 139, 147, 0.5);" : "#ccc"};
   border-radius: 20px;
   transition: 0.4s;
 
@@ -68,6 +70,7 @@ const SliderWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
+  position: relative;
 `;
 
 const RangeSlider = styled.input`
@@ -96,6 +99,17 @@ const RangeSlider = styled.input`
   }
 `;
 
+const GaugeLabel = styled.span`
+  position: absolute;
+  left: calc(${(props) => props.value}% - 10px);
+  top: -25px;
+  background-color: #fff;
+  color: #000;
+  padding: 2px 5px;
+  border-radius: 5px;
+  font-size: 12px;
+`;
+
 const Marks = styled.div`
   display: flex;
   justify-content: space-between;
@@ -109,7 +123,8 @@ const Marks = styled.div`
 `;
 
 const PowerButton = styled.button`
-  background: ${(props) => (props.on ? " rgba(134, 139, 147, 0.2);" : "rgba(134, 139, 147, 0.7);")};
+  background: ${(props) =>
+    props.on ? " rgba(134, 139, 147, 0.2);" : "rgba(134, 139, 147, 0.7);"};
   border: none;
   border-radius: 50%;
   color: white;
@@ -124,10 +139,24 @@ const PowerStatus = styled.p`
   margin-top: 10px;
 `;
 
+const SaltInfo = styled.div`
+  margin-bottom: 30px;
+  padding: 10px 20px;
+  background-color: rgba(134, 139, 147, 0.1);
+  border-radius: 10px;
+  text-align: left;
+`;
+
 const SliderComponent = () => {
   const [sliderValue, setSliderValue] = useState(75);
   const [isAIEnabled, setIsAIEnabled] = useState(true);
   const [isPowerOn, setIsPowerOn] = useState(false);
+  const [saltData, setSaltData] = useState({
+    requiredWater: null,
+    message: "",
+    value: null,
+  });
+  const [loading, setLoading] = useState(true);
 
   const handleSliderChange = (e) => {
     setSliderValue(e.target.value);
@@ -141,10 +170,37 @@ const SliderComponent = () => {
     setIsPowerOn(!isPowerOn);
   };
 
+  const extractMessageContent = (message) => {
+    const match = message.match(/\((.*?)\)/);
+    return match ? match[1] : "No data available";
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetchSensorData();
+        if (response) {
+          const { salt } = response;
+          setSaltData({
+            requiredWater: salt.requiredWater ?? "N/A",
+            message: extractMessageContent(salt.message),
+            value: salt.value ?? "N/A",
+          });
+        }
+      } catch (error) {
+        console.error("Failed to fetch sensor data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <SliderContainer>
       <Header>
-        <h3>ADJUSTMENT</h3>
+        <h3>Salt Information</h3>
         <ToggleContainer>
           <Label>AI</Label>
           <Switch>
@@ -157,8 +213,20 @@ const SliderComponent = () => {
           </Switch>
         </ToggleContainer>
       </Header>
+      <SaltInfo>
+        <p>
+          <strong>필요한 물의 양:</strong> {saltData.requiredWater ?? "N/A"} ml
+        </p>
+        <p>
+          <strong>메세지:</strong> {saltData.message ?? "No data available"}
+        </p>
+        <p>
+          <strong>현재 염분:</strong> {saltData.value ?? "N/A"}
+        </p>
+      </SaltInfo>
       <SliderWrapper>
-        <span>0%</span>
+        <GaugeLabel value={sliderValue}>{sliderValue}</GaugeLabel>
+        <span>0</span>
         <RangeSlider
           type="range"
           min="0"
@@ -166,17 +234,17 @@ const SliderComponent = () => {
           value={sliderValue}
           onChange={handleSliderChange}
         />
-        <span>100%</span>
+        <span>100</span>
       </SliderWrapper>
       <Marks>
-        <span>25%</span>
-        <span>50%</span>
-        <span>75%</span>
+        <span>25</span>
+        <span>50</span>
+        <span>75</span>
       </Marks>
       <PowerButton on={isPowerOn} onClick={togglePower}>
         ⏻
       </PowerButton>
-      <PowerStatus>{isPowerOn ? "ON" : "OFF"}</PowerStatus>
+      <PowerStatus>{isPowerOn ? "Water ON" : "Water OFF"}</PowerStatus>
     </SliderContainer>
   );
 };

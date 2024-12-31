@@ -5,7 +5,7 @@ import Data from "../components/Data.jsx";
 import Leftbar from "../components/Leftbar.jsx";
 import FishVideo from "../components/fishDetail/FishVideo.jsx";
 import FishTable from "../components/fishDetail/FishTable.jsx";
-import Header from "../components/Header.jsx"
+import Header from "../components/Header.jsx";
 const DashboardContainer = styled.div`
   display: flex;
   background-color: black;
@@ -31,7 +31,6 @@ const ToggleButton = styled.button`
   height: 30px; /* 버튼 높이 */
 `;
 
-
 const MainContent = styled.div`
   display: flex;
   flex: 1;
@@ -40,7 +39,6 @@ const MainContent = styled.div`
   padding: 20px;
   margin-top: 70px;
 `;
-
 
 const DataContainer = styled.div`
   display: flex;
@@ -76,7 +74,7 @@ const FishDetailPage = () => {
       <MainContent isSidebarOpen={isSidebarOpen}>
         <Header></Header>
         <DataContainer>
-          <FishVideo imageSrc={"../assets/fish-video.png"}></FishVideo>
+          <FishVideo videoSrc={"../assets/fish-video.mov"}></FishVideo>
           <FishTable></FishTable>
         </DataContainer>
       </MainContent>
